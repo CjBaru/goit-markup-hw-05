@@ -1,2 +1,2 @@
-# goit-markup-hw-04
-Markup, Icon Styling and Decorative Effects to layout pages of homework #4
+# goit-markup-hw-05
+Animated Decorative Effects to layout pages of homework #5
