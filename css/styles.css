@@ -11,12 +11,14 @@
     --RED: #ff0000;
     --GREEN: #008000;
     --GREY: #2E2F42B2;
+    --DAIRY: #FCFCFC;
+    --NAVY-BLUE-modal: rgba(46, 47, 66, 0.40);
 }
 
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 body {
@@ -25,6 +27,7 @@ body {
     font-weight: 400;
     line-height: 150%;
     letter-spacing: 0.32px;
+    box-sizing: border-box;
 }
 
 /*HEADER*/
@@ -100,6 +103,23 @@ body {
     letter-spacing: 0.32px;
 }
 
+/*NAV POSITIONING*/
+
+.nav .active {
+    color: var(--OCEAN);
+}
+
+.active::after {
+    content: " ";
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 2px;
+    background: var(--OCEAN, #404BBF);
+    position: relative;
+    top: 23px;
+}
+
 /*PSEUDO-CLASSES OF LINKS*/
 
 .contact:hover,
@@ -116,8 +136,8 @@ body {
     color: var(--IRIS);
 }
 
-.submenu:visited {
-    color: var(--SLATE);
+.active:hover {
+    color: var(--OCEAN);
 }
 
 /*MAIN*/
@@ -166,6 +186,53 @@ body {
 .order:visited {
     color: var(--SLATE);
 }
+
+/*MODAL*/
+
+.backdrop {
+    background: var(--NAVY-BLUE-modal);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal {
+    position: relative;
+    top: 80px;
+    width: 408px;
+    height: 584px;
+    border-radius: 4px;
+    background: var(--DAIRY);
+    box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.20), 0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+    padding: 24px 24px 0 0;
+}
+
+.modal-close {
+    position: inherit;
+    border-radius: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--CORNFLOWER);
+    width: 24px;
+    height: 24px;
+    margin-left: auto;
+    display: block;
+}
+
+.modal-close:hover {
+    cursor: pointer;
+}
+
+.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/*SECTIONS*/
 
 .section {
     padding-top: 120px;
@@ -258,7 +325,8 @@ body {
 
 .team-icons {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 24px;
 }
 
 .team-icons-a {
@@ -340,18 +408,21 @@ body {
 .project-cards .devices {
     flex-wrap: wrap;
     width: 100%;
+    position: relative;
 }
 
 .card-content {
     border: 1px solid var(--CORNFLOWER, #E7E9FC);
     background: var(--WHITE, #FFF);
     margin-top: 24px;
+    position: inherit;
 }
 
 .cards {
     display: flex;
     flex-direction: column;
     margin: 0;
+    position: inherit;
 }
 
 .cards:hover {
@@ -374,6 +445,40 @@ body {
     color: var(--SLATE);
 }
 
+/*OVERLAY*/
+
+.cards:hover .project-image-overlay {
+    opacity: .9;
+    transform: translateY(0);
+}
+
+.project-image {
+    position: inherit;
+    display: flex;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 360px;
+}
+
+.project-image-overlay {
+    position: absolute;
+    background: var(--IRIS);
+    color: var(--CLOUD);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-image-overlay p {
+    padding: 40px 32px;
+}
+
 /*FOOTER*/
 
 .container-footer {
@@ -382,6 +487,9 @@ body {
     padding-top: 101.5px;
     padding-bottom: 100px;
     padding-left: 156px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 120px;
 }
 
 .footer {
@@ -400,4 +508,9 @@ body {
 
 .footer p {
     margin: 17.5px 0 0;
+}
+
+.footer-media {
+    font-weight: 500;
+    margin-bottom: 16px;
 }
